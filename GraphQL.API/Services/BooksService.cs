@@ -25,8 +25,10 @@ namespace GraphQL.API.Services
                 LibraryDatabaseSettings.Value.BooksCollectionName);
         }
 
-        public async Task<List<Book>> GetAsync() =>
-            await _booksCollection.Find(_ => true).ToListAsync();
+        public async Task<List<Book>> GetAsync(int page, int numItem, string search) =>
+            search == ""
+                ?  await _booksCollection.Find(_ => true).Skip(page).Limit(numItem).ToListAsync() 
+                :  await _booksCollection.Find(b => b.BookTitle.Contains(search)).Skip(page).Limit(numItem).ToListAsync();
 
         public async Task<Book?> GetAsync(string id) =>
             await _booksCollection.Find(x => x.Id == id).FirstOrDefaultAsync();

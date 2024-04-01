@@ -19,8 +19,8 @@ namespace GraphQL.API.Controllers
             _booksService = booksService;
         }
         [HttpGet]
-        public async Task<List<Book>> Get() =>
-        await _booksService.GetAsync();
+        public async Task<List<Book>> Get(int size = 10, int page = 1, string search = " ") =>
+            await _booksService.GetAsync(page,size, search);
 
         [HttpGet("{id:length(24)}")]
         public async Task<ActionResult<Book>> Get(string id)

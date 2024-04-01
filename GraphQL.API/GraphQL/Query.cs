@@ -19,6 +19,6 @@ namespace GraphQL.API.GraphQL
 
         // mongodb service
         public async Task<Book?> GetBook(string id) => await _bookService.GetAsync(id);
-        public async Task<List<Book>> GetBooks() => await _bookService.GetAsync();
+        public async Task<List<Book>> GetBooks(int page = 0, int size = 10, string search = "") => await _bookService.GetAsync(page,size, search);
     }
 }
