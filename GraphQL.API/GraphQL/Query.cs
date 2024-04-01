@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using GraphQL.API.Models;
 using GraphQL.API.Services;
 
@@ -9,10 +5,19 @@ namespace GraphQL.API.GraphQL
 {
     public class Query
     {
-        private BookService _bookService = new BookService();
-        // List<Book> books = bookService.GetBooks();
-        public Book GetBook(int id) => _bookService.GetBook(id);
+        private SBookService _sBookService = new SBookService();
+        private BooksService _bookService;
 
-        public List<Book> GetBooks() => _bookService.GetBooks();
+        public Query(BooksService bookService)
+        {
+            _bookService = bookService;
+        }
+
+        // static service
+        public SBook GetSBook(int id) => _sBookService.GetSBook(id);
+        public List<SBook> GetSBooks() => _sBookService.GetSBooks();
+
+        // mongodb service
+        public async Task<Book?> GetBook(string id) => await _bookService.GetAsync(id);
     }
 }

@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using GraphQL.API.Models;
 using GraphQL.API.Services;
 
@@ -9,21 +5,21 @@ namespace GraphQL.API.GraphQL
 {
     public class Mutation
     {
-        private BookService _bookService = new BookService();
-        public List<Book> AddBook(Book book)
+        private SBookService _bookService = new SBookService();
+        public List<SBook> AddSBook(SBook book)
         {
-            _bookService.AddBook(book);
-            return _bookService.GetBooks();
+            _bookService.AddSBook(book);
+            return _bookService.GetSBooks();
         }
-        public List<Book> DeleteBook(int id)
+        public List<SBook> DeleteSBook(int id)
         {
-            _bookService.DeleteBook(id);
-            return _bookService.GetBooks();
+            _bookService.DeleteSBook(id);
+            return _bookService.GetSBooks();
         }
 
-        public Book UpdateBook(int id, Book book)
+        public SBook UpdateSBook(int id, SBook book)
         {
-            _bookService.UpdateBook(id, book);
+            _bookService.UpdateSBook(id, book);
             return book;
         }
     }

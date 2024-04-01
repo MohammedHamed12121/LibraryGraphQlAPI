@@ -1,9 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using GraphQL.API.GraphQL.Types;
-using HotChocolate.Types;
 
 namespace GraphQL.API.GraphQL.QueryTypes
 {
@@ -12,8 +7,8 @@ namespace GraphQL.API.GraphQL.QueryTypes
         protected override void Configure(IObjectTypeDescriptor<Query> descriptor)
         {
             descriptor
-                .Field(f => f.GetBooks())
-                .Type<ListType<BookType>>();
+                .Field(f => f.GetSBooks())
+                .Type<ListType<SBookType>>();
         }
     }
 }

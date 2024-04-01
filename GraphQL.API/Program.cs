@@ -1,5 +1,7 @@
-using GraphQL.API.GraphQL;
+using GraphQL.API;
 using GraphQL.API.GraphQL.QueryTypes;
+using GraphQL.API.Services;
+using MongoDB.Libmongocrypt;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,11 +9,17 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
+// MongoDB connection
+builder.Services.Configure<LibraryDatabaseSettings>(
+    builder.Configuration.GetSection("LibraryDatabase"));
+
 // GraphQL
 builder.Services.AddGraphQLServer()
                 .AddQueryType<QueryType>()
                 .AddMutationType<MutationType>()
                 .AddDefaultTransactionScopeHandler();
+
+builder.Services.AddSingleton<BooksService>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

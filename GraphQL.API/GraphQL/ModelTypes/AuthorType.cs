@@ -1,9 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using GraphQL.API.Models;
-using HotChocolate.Types;
 
 namespace GraphQL.API.GraphQL.Types
 {

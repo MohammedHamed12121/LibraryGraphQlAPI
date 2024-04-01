@@ -1,9 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using GraphQL.API.GraphQL.Types;
-using GraphQL.API.Models;
 
 namespace GraphQL.API.GraphQL.QueryTypes
 {
@@ -12,14 +7,16 @@ namespace GraphQL.API.GraphQL.QueryTypes
         protected override void Configure(IObjectTypeDescriptor<Mutation> descriptor)
         {
             descriptor
-                .Field(f => f.AddBook(default))
-                .Type<ListType<BookType>>();
+                .Field(f => f.AddSBook(default!))
+                .Type<ListType<SBookType>>();
+
             descriptor
-                .Field(f => f.DeleteBook(default))
-                .Type<ListType<BookType>>();
+                .Field(f => f.DeleteSBook(default!))
+                .Type<ListType<SBookType>>();
+                
             descriptor
-                .Field(f => f.UpdateBook(default,default))
-                .Type<BookType>();
+                .Field(f => f.UpdateSBook(default!, default!))
+                .Type<SBookType>();
         }
     }
 }
